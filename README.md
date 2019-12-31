@@ -43,7 +43,7 @@ Cymbal基于Spring Boot2开发。
   * 多种安全认证方式（CAS + 常规方式 + LDAP（TODO））
   * 集群访问授权
   
-# Keyword
+# Keywords
 
 * ![dangdangdotcom](http://img61.ddimg.cn/upload_img/00405/luyi/DDlogoNEW.gif)
 
