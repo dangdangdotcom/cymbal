@@ -1,0 +1,74 @@
+logging:
+  level:
+    com.dangdang.cymbal: debug
+
+spring:
+  h2:
+    console:
+      enabled: true
+      path: /h2
+  datasource:
+    url: jdbc:h2:mem:cymbal;DB_CLOSE_DELAY=-1;DATABASE_TO_UPPER=false;MODE=MYSQL
+    driver-class-name: org.h2.Driver
+    username: sa
+    schema: classpath:schema_test.sql
+    data: classpath:data_test.sql
+  mail:
+    # change to yours
+    default-encoding: UTF-8
+    host: cymbal.io
+    port: 25
+    username: user@cymbal.com
+    password: password
+    protocol: smtp
+    properties:
+      mail:
+        smtp:
+          auth: true
+          ssl:
+            enable: false
+
+mybatis-plus:
+  type-enums-package: com.dangdang.cymbal.domain.po
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    default-enum-type-handler: org.apache.ibatis.type.EnumOrdinalTypeHandler
+  global-config:
+    db-config:
+      id-type: auto
+
+alarm:
+  mail:
+    from: user@cymbal.com
+    to: admin@cymbal.com
+
+shell:
+  name:
+    redis: ./redis-portal/server_manage.sh
+    sentinel: ./redis-portal/sentinel_manage.sh
+    ansible: ./redis-portal/exec_ansible.sh
+
+ssh:
+  key:
+    path: ~/.ssh/id_rsa
+
+monitor:
+  type: default
+  grafana:
+    api:
+      url: http://grafana.cymbal.io/
+      key: grafanaApiKey
+
+  prometheus:
+    host: http://prometheus.cymbal.io/
+    confd:
+      path: #{prometheus_path}/conf.d/
+
+  exporter:
+    redis:
+      port: 9121
+      path: /home/redis/redis_exporter/
+      confd:
+        path: /home/redis/redis_exporter/conf.d/
+      script:
+        name: redis_exporter_start_or_reload.sh

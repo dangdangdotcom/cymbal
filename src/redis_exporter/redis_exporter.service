@@ -1,0 +1,16 @@
+[Unit]
+Description=Redis Exporter
+After=network.target
+ 
+[Service]
+User=redis
+Group=redis
+Type=forking
+WorkingDirectory=/home/redis/redis_exporter
+ExecStart=/home/redis/redis_exporter/redis_exporter_start_or_reload.sh
+ExecStop=/home/redis/redis_exporter/redis_exporter_shutdown.sh
+ExecReload=/home/redis/redis_exporter/redis_exporter_start_or_reload.sh
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,9 @@
+proxy:
+  grafana:
+    enable: true
+    targetUri: http://grafana.cymbal.io
+    log: true
+  prometheus:
+    enable: true
+    targetUri: http://prometheus.cymbal.io
+    log: true

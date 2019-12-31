@@ -1,0 +1,19 @@
+route:
+  group_by: ['alias', 'alertname']
+  group_wait: 3m
+  group_interval: 1h
+  repeat_interval: 1w
+  receiver: 'cymbal.io'
+  routes:
+  - receiver: 'cymbal.io'
+    group_wait: 3m
+    group_interval: 1h
+    repeat_interval: 6h
+    match:
+      severity: critical
+
+receivers:
+- name: 'cymbal.io'
+  webhook_configs:
+  - url: 'http://cymbal.io/api/v1/alertmanager/webhook'
+    send_resolved: false

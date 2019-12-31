@@ -1,0 +1,100 @@
+---
+- hosts: redisservers
+
+  vars:
+    ulimit_num: 65536
+
+  tasks:
+  - name: add ntp crontab
+    cron:
+      name: ntp
+      job: /usr/sbin/ntpdate -s ntpserver.idc3 >> /dev/null 2>&1
+      minute: "*/5"
+
+  - name: update sar crontab
+    cron:
+      name: sar
+      cron_file: sysstat
+      user: root
+      job: /usr/lib64/sa/sa1 1 1
+      minute: "*/1"
+
+  - name: CentOS 7 stop firewall and irqbalance
+    systemd: name={{ item }} state=stopped enabled=no
+    with_items:
+      - firewalld.service
+      - irqbalance
+    when:
+      - ansible_distribution == "CentOS"
+      - ansible_distribution_major_version == "7"
+
+  - name: CentOS 6 stop firewall and irqbalance
+    service: name={{ item }} state=stopped enabled=no
+    with_items:
+      - iptables
+      - irqbalance
+    when:
+      - ansible_distribution == "CentOS"
+      - ansible_distribution_major_version == "6"
+
+  - name: set NIC irq affinity
+    script: shell/set_nic_irq_affinity.sh eth0
+
+  ##### ulimit #####
+  - name: Ulimit change
+    shell: ulimit -SHn 65536
+
+  - name: Ulimit change rc.local
+    lineinfile:
+      dest: /etc/rc.local
+      regexp: "ulimit -SHn {{ ulimit_num }}"
+      line: "ulimit -SHn {{ ulimit_num }}"
+
+  - name: Change limits.conf soft
+    lineinfile:
+      dest: /etc/security/limits.conf
+      regexp: '\* soft nofile [0-9]+'
+      backrefs: no
+      line: '* soft nofile {{ ulimit_num }}'
+
+  - name: Change limits.conf hard
+    lineinfile:
+      dest: /etc/security/limits.conf
+      regexp: '\* hard nofile [0-9]+'
+      backrefs: no
+      line: '* hard nofile {{ ulimit_num }}'
+
+  ##### sysctl #####
+  - name: update sysctl
+    sysctl: state=present reload=yes {{ item }}
+    with_items:
+      # Max listen queue backlogca
+      - { name: "net.core.somaxconn", value: "4096" }
+      # Max open files
+      - { name: "fs.file-max", value: "{{ ulimit_num }}" }
+      #
+      - { name: "vm.overcommit_memory", value: "1" }
+
+  - name: CentOS 7 close swappiness
+    sysctl: state=present reload=yes name=vm.swappiness value=0
+    when:
+      - ansible_distribution == "CentOS"
+      - ansible_distribution_major_version == "7"
+
+  - name: CentOS 6 close swappiness
+    sysctl: state=present reload=yes name=vm.swappiness value=10
+    when:
+      - ansible_distribution == "CentOS"
+      - ansible_distribution_major_version == "6"
+
+  ##### transparent_hugepage #####
+  - name: disable transparent_hugepage
+    shell: "echo never > /sys/kernel/mm/transparent_hugepage/enabled"
+    ignore_errors: true
+
+  - name: disable transparent_hugepage in rc.local
+    lineinfile:
+      path: /etc/rc.local
+      regexp: "(.*)transparent_hugepage/enabled$"
+      line: "echo never > /sys/kernel/mm/transparent_hugepage/enabled"
+    ignore_errors: true

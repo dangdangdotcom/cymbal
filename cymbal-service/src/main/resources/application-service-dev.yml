@@ -1,0 +1,84 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/cymbal?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull
+    username: yourDbUserName
+    password: yourPassword
+    continue-on-error: true
+    type: com.alibaba.druid.pool.DruidDataSource
+    initial-size: 10
+    max-active: 60
+    max-wait: 60000
+    minIdle: 10
+    max-idle: 20
+    time-between-eviction-runs-millis: 60000
+    min-evictable-idle-time-millis: 300000
+    validation-query: select 1
+    default-auto-commit: false
+    test-while-idle: true
+    test-on-borrow: true
+    test-on-return: false
+    pool-prepared-statements: true
+    max-open-prepared-statements: 20
+    filters: stat,wall,slf4j
+    schema: classpath:datasource/schema.sql
+    data: classpath:datasource/data.sql
+  mail:
+    default-encoding: UTF-8
+    host: cymbal.io
+    port: 25
+    username: user@cymbal.io
+    password: password
+    protocol: smtp
+    properties:
+      mail:
+        smtp:
+          auth: true
+          ssl:
+            enable: false
+
+mybatis-plus:
+  type-enums-package: com.dangdang.cymbal.domain.po
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    default-enum-type-handler: org.apache.ibatis.type.EnumOrdinalTypeHandler
+  global-config:
+    banner: false
+    db-config:
+      id-type: auto
+
+alarm:
+  mail:
+    from: user@cymbal.com
+    to: admin@cymbal.com
+
+shell:
+  name:
+    redis: ./redis-portal/server_manage.sh
+    sentinel: ./redis-portal/sentinel_manage.sh
+    ansible: ./redis-portal/exec_ansible.sh
+
+ssh:
+  key:
+    path: ~/.ssh/id_rsa
+
+monitor:
+  type: default
+  grafana:
+    api:
+      url: http://grafana.cymbal.io/
+      key: grafanaApiKey
+
+  prometheus:
+    host: http://prometheus.cymbal.io/
+    confd:
+      path: #{prometheus_path}/conf.d/
+
+  exporter:
+    redis:
+      port: 9121
+      path: /home/redis/redis_exporter/
+      confd:
+        path: /home/redis/redis_exporter/conf.d/
+      script:
+        name: redis_exporter_start_or_reload.sh

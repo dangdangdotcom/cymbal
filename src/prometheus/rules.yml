@@ -1,0 +1,86 @@
+groups:
+- name: 'sloglog'
+  rules:
+  - alert: 'slowlog'
+    expr: delta(redis_slowlog_last_id [5m]) >= 5
+    labels:
+      severity: critical
+    annotations:
+      summary: '发现慢查询'
+      description: '一分钟内共出现 {{ printf "%.2f" $value }} 次慢查询'
+
+- name: 'used memory increase too fast'
+  rules:
+  - alert: 'used memory increase too fast'
+    expr: predict_linear(redis_memory_used_bytes [10m], 60 * 20) > redis_config_maxmemory
+    labels:
+      severity: critical
+    annotations:
+      summary: '发现内存使用量增长过快'
+      description: '按照最近10分钟的内存使用增长速度计算，预计20分钟后将会达到配置上限'
+
+- name: 'used memory larger than history peak'
+  rules:
+  - alert: 'used memory larger than history peak'
+    expr: (redis_memory_used_bytes / (1024 * 1024 * 1024)) >= (redis_memory_used_peak_bytes / (1024 * 1024 * 1024)) and (redis_memory_used_bytes / redis_config_maxmemory) > 0.8
+    labels:
+      severity: critical
+    annotations:
+      summary: '内存使用量超过历史峰值'
+      description: '当前内存使用量为 {{ printf "%.2f" $value }} GB'
+
+- name: 'memory usage in low ratio'
+  rules:
+  - alert: 'memory usage in low ratio'
+    expr: (redis_memory_used_bytes / redis_config_maxmemory) * 100 < 30 and redis_config_maxmemory > (1024 * 1024 * 1024)
+    for: 1w
+    labels:
+      severity: warning
+    annotations:
+      summary: '内存使用率长时间过低'
+      description: '最近一周的内存使用率为 {{ printf "%.1f%%" $value }}，建议进行集群缩容操作'
+
+- name: 'memory usage in high fragmentation ratio'
+  rules:
+  - alert: 'memory usage in high fragmentation ratio'
+    expr: redis_memory_used_rss_bytes / redis_memory_used_bytes > 1.4 and redis_memory_used_bytes >= 1024 * 1024 * 1024
+    for: 1w
+    labels:
+      severity: warning
+    annotations:
+      summary: '内存碎片率高'
+      description: '当前内存碎片率为 {{ printf "%.2f" $value }}，理想值为1至1.4之间'
+
+- name: 'memory usage in low fragmentation ratio'
+  rules:
+  - alert: 'memory usage in low fragmentation ratio'
+    expr: redis_memory_used_rss_bytes / redis_memory_used_bytes < 1
+    for: 1w
+    labels:
+      severity: warning
+    annotations:
+      summary: '内存碎片率小于1，redis-server进程可能正在使用swap区，导致响应速度降低'
+      description: '当前内存碎片率为 {{ printf "%.2f" $value }}，理想值为1至1.4之间'
+
+- name: 'rdb bgsave too slow'
+  rules:
+  - alert: 'rdb bgsave too slow'
+    expr: redis_rdb_last_bgsave_duration_sec > 120 and time() - redis_rdb_last_save_timestamp_seconds < 3600
+    labels:
+      severity: critical
+    annotations:
+      summary: 'rdb持久化时间过长'
+      description: '最近一次持久化时间为 {{ $value }} 秒，建议降低该节点内存使用量至4GB以内'
+
+- name: 'redis exporter maybe down'
+  rules:
+  - alert: 'redis exporter maybe down'
+    expr: up == 0
+    for: 5m
+    labels:
+      severity: critical
+      addr: '{{ $labels.instance }}'
+      alias: ''
+    annotations:
+      summary: 'redis exporter服务不可用'
+      description: '请联系redis平台运维团队检查服务或主机状态'

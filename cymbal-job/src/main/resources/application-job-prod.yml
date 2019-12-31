@@ -1,0 +1,6 @@
+job:
+  replicaion:
+    cron: 0 */60 * * * ?
+  rdb:
+    bgsave:
+      cron: 0 */30 * * * ?

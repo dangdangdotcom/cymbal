@@ -1,0 +1,17 @@
+[Unit]
+Description=Redis Service Of Port ${redis_port}
+After=network.target
+ 
+[Service]
+User=redis
+Group=redis
+Type=forking
+WorkingDirectory=/home/redis/redis-${redis_port}
+ExecStart=/usr/bin/taskset -c ${taskset_cpus} /home/redis/${redis_version}/src/redis-server redis.conf
+ExecStop=/home/redis/${redis_version}/src/redis-cli -p ${redis_port} -a '${redis_password}' shutdown
+RestartSec=60
+Restart=always
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target

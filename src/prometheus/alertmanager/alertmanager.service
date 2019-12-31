@@ -1,0 +1,14 @@
+[Unit]
+Description=Alertmanager Of Prometheus
+After=network.target
+
+[Service]
+User=redis
+Group=redis
+Type=forking
+WorkingDirectory=/home/redis/alertmanager-0.16.1.linux-amd64/
+ExecStart=/home/redis/alertmanager-0.16.1.linux-amd64/alertmanager --config.file=alertmanager.yml --storage.path=/data/alertmanager
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

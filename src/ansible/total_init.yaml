@@ -1,0 +1,8 @@
+- import_playbook: os_optimization.yaml
+- import_playbook: install_performance_monitor_tools.yaml
+- import_playbook: create_redis_account.yaml
+- import_playbook: init_root_authorized_key.yaml
+- import_playbook: init_redis_authorized_key.yaml
+- import_playbook: install_redis.yaml
+- import_playbook: install_redis_exporter.yaml
+- import_playbook: install_ redis_persistence_cron.yaml

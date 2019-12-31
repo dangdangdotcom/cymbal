@@ -1,0 +1,5 @@
+---
+- hosts: redisservers
+
+  tasks:
+  - authorized_key: user=root key="{{ lookup('file', '~/.ssh/id_rsa.pub') }}"

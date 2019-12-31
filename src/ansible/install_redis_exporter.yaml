@@ -1,0 +1,47 @@
+---
+- hosts: redisservers
+
+  vars:
+    base_path: ../
+
+  tasks:
+  - name: copy redis_exporter file to remote server
+    copy:
+      src: "{{ base_path }}/software_package/redis_exporter.tar.gz"
+      dest: "{{ base_path }}"
+      owner: redis
+      group: redis
+      mode: "u=rw,g=r,o=r"
+      force: yes
+
+  - name: unarchive redis_exporter file
+    unarchive:
+      src: "{{ base_path }}/redis_exporter.tar.gz"
+      dest: "{{ base_path }}"
+      remote_src: yes
+
+  - name: make conf.d dir
+    file:
+      path: "{{ base_path }}/redis_exporter/conf.d"
+      owner: redis
+      group: redis
+      state: directory
+
+  - name: copy redis_exporter.service to /etc/systemd/system/
+    copy:
+      src: "{{ base_path }}/redis_exporter/redis_exporter.service"
+      dest: "/etc/systemd/system/"
+      remote_src: yes
+    when:
+      - ansible_distribution == "CentOS"
+      - ansible_distribution_major_version == "7"
+
+  - name: enable redis_exporter.service
+    systemd:
+      name: redis_exporter
+      daemon_reload: yes
+      enabled: yes
+      masked: no
+    when:
+      - ansible_distribution == "CentOS"
+      - ansible_distribution_major_version == "7"

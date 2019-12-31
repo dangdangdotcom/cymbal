@@ -1,0 +1,22 @@
+---
+- hosts: redisservers
+
+  vars:
+    cron_path: /home/redis/cron_script
+
+  tasks:
+  - name: make cron_script dir
+    file:
+      path: "{{ cron_path }}"
+      owner: redis
+      group: redis
+      state: directory
+
+  - name: copy cron script
+    copy: src=shell/redis_persistence_job.sh dest={{ cron_path }} owner=redis group=redis mode="u=rwx,g=rx,o=rx"
+
+  - name: add persistence crontab
+    cron:
+      name: redis-persistence
+      job: "{{ cron_path }}/redis_persistence_job.sh >> {{ cron_path }}/redis_persistence_job.log"
+      minute: "*/10"

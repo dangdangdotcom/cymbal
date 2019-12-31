@@ -1,0 +1,24 @@
+spring:
+  profiles:
+    include: service-prod, job-prod, proxy-prod
+  freemarker:
+    cache: false
+    settings:
+      template_update_delay: 0
+  devtools:
+    restart:
+      enabled: true
+
+security:
+  cas:
+    enable: true
+    serverUrlPrefix: http://cas.cymbal.io/authentication
+    serverLoginUrl: ${security.cas.serverUrlPrefix}/login
+    serverLogoutUrl: ${security.cas.serverUrlPrefix}/logout
+    serviceName: http://cymbal.io
+    serviceLoginUrl: /login
+    serviceLogoutUrl: /logout
+
+logging:
+  level:
+    root: info

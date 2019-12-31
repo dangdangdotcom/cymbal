@@ -1,0 +1,15 @@
+---
+- hosts: redisservers
+
+  tasks:
+  - name: install monitor tools
+    yum:
+      name:
+        - epel-release
+        - atop
+        - htop
+        - dstat
+        - strace
+      state: installed
+    async: 180
+    poll: 0

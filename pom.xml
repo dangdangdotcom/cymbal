@@ -1,0 +1,262 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.1.5.RELEASE</version>
+        <relativePath/>
+    </parent>
+
+    <groupId>com.dangdang.cymbal</groupId>
+    <artifactId>cymbal</artifactId>
+    <version>1.0.0-alpha</version>
+    <name>Cymbal</name>
+    <packaging>pom</packaging>
+    <description>An operational platform of Redis</description>
+    <url>https://github.com/dangdangdotcom/cymbal</url>
+
+    <organization>
+        <name>DangDang, Inc.</name>
+        <url>http://www.dangdang.com</url>
+    </organization>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+        </license>
+    </licenses>
+
+    <issueManagement>
+        <system>github</system>
+        <url>https://github.com/dangdangdotcom/cymbal/issues</url>
+    </issueManagement>
+
+    <developers>
+        <developer>
+            <id>redzippo</id>
+            <name>GeZhen</name>
+            <email>gezhen@dangdang.com</email>
+            <organization>DangDang, Inc.</organization>
+            <organizationUrl>http://www.dangdang.com</organizationUrl>
+            <roles>
+                <role>Developer</role>
+            </roles>
+        </developer>
+    </developers>
+
+    <scm>
+        <url>https://github.com/dangdangdotcom/cymbal</url>
+        <connection>scm:git:git://github.com/dangdangdotcom/cymbal.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/dangdangdotcom/cymbal.git</developerConnection>
+    </scm>
+
+    <modules>
+        <module>cymbal-portal</module>
+        <module>cymbal-service</module>
+        <module>cymbal-common</module>
+        <module>cymbal-job</module>
+        <module>cymbal-domain</module>
+        <module>cymbal-proxy</module>
+    </modules>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <maven.version.range>[3.0.4,)</maven.version.range>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.build.locale>zh_CN</project.build.locale>
+
+        <mybatis.plus.version>3.1.2</mybatis.plus.version>
+        <druid.version>1.1.10</druid.version>
+        <guava.version>28.1-jre</guava.version>
+        <commons-lang.version>2.6</commons-lang.version>
+        <javaee-web-api.version>8.0</javaee-web-api.version>
+        <fastjson.version>1.2.51</fastjson.version>
+        <sshj.version>0.27.0</sshj.version>
+        <commons-httpclient.version>3.1</commons-httpclient.version>
+        <poi.version>3.13</poi.version>
+        <mysql.version>5.1.32</mysql.version>
+        <smiley-http-proxy-servlet.version>1.11</smiley-http-proxy-servlet.version>
+
+        <lifecycle-mapping.version>1.0.0</lifecycle-mapping.version>
+        <maven-surefire-report-plugin.version>2.18.1</maven-surefire-report-plugin.version>
+        <maven-project-info-reports-plugin.version>2.8</maven-project-info-reports-plugin.version>
+        <maven-plugin-plugin.version>3.4</maven-plugin-plugin.version>
+        <maven-jxr-plugin.version>2.5</maven-jxr-plugin.version>
+        <maven-checkstyle-plugin.version>2.16</maven-checkstyle-plugin.version>
+        <maven-pmd-plugin.version>3.5</maven-pmd-plugin.version>
+        <findbugs-maven-plugin.version>3.0.2</findbugs-maven-plugin.version>
+        <jdepend-maven-plugin.version>2.0</jdepend-maven-plugin.version>
+        <taglist-maven-plugin.version>2.4</taglist-maven-plugin.version>
+        <javadocExecutable>${java.home}/../bin/javadoc</javadocExecutable>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+
+            <!-- Mapper -->
+
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis.plus.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-core</artifactId>
+                <version>${mybatis.plus.version}</version>
+            </dependency>
+
+            <!-- Connection Pool -->
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+
+            <!-- Mysql -->
+
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.version}</version>
+            </dependency>
+
+            <!-- Apache commons -->
+
+            <dependency>
+                <groupId>commons-lang</groupId>
+                <artifactId>commons-lang</artifactId>
+                <version>${commons-lang.version}</version>
+            </dependency>
+
+            <!-- guava -->
+
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>commons-httpclient</groupId>
+                <artifactId>commons-httpclient</artifactId>
+                <version>${commons-httpclient.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi</artifactId>
+                <version>${poi.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi-excelant</artifactId>
+                <version>${poi.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi-ooxml</artifactId>
+                <version>${poi.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi-ooxml-schemas</artifactId>
+                <version>${poi.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi-scratchpad</artifactId>
+                <version>${poi.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.hierynomus</groupId>
+                <artifactId>sshj</artifactId>
+                <version>${sshj.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>javax</groupId>
+                <artifactId>javaee-web-api</artifactId>
+                <version>${javaee-web-api.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mitre.dsmiley.httpproxy</groupId>
+                <artifactId>smiley-http-proxy-servlet</artifactId>
+                <version>${smiley-http-proxy-servlet.version}</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+    <profiles>
+
+        <profile>
+            <id>dangdang-dev-war</id>
+            <properties>
+                <active_profile>dev</active_profile>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>dangdang-dev-jar</id>
+            <properties>
+                <active_profile>dev</active_profile>
+            </properties>
+        </profile>
+        <profile>
+            <id>dangdang-prod</id>
+            <properties>
+                <active_profile>prod</active_profile>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>dev-war</id>
+            <properties>
+                <active_profile>dev</active_profile>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+
+        <profile>
+            <id>dev-jar</id>
+            <properties>
+                <active_profile>dev</active_profile>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>fat</id>
+            <properties>
+                <active_profile>fat</active_profile>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>prod</id>
+            <properties>
+                <active_profile>prod</active_profile>
+            </properties>
+        </profile>
+
+    </profiles>
+</project>

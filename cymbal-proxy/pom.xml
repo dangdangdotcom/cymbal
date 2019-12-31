@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.dangdang.cymbal</groupId>
+        <artifactId>cymbal</artifactId>
+        <version>1.0.0-alpha</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>cymbal-proxy</artifactId>
+    <name>Cymbal Proxy</name>
+
+    <dependencies>
+
+        <!-- Common -->
+
+        <dependency>
+            <groupId>com.dangdang.cymbal</groupId>
+            <artifactId>cymbal-common</artifactId>
+            <version>1.0.0-alpha</version>
+        </dependency>
+
+        <!-- Proxy servlet -->
+
+        <dependency>
+            <groupId>org.mitre.dsmiley.httpproxy</groupId>
+            <artifactId>smiley-http-proxy-servlet</artifactId>
+        </dependency>
+
+
+        <!-- Javax servlet -->
+
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-web-api</artifactId>
+        </dependency>
+
+        <!-- Spring auto configuration -->
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
+        </dependency>
+
+    </dependencies>
+
+</project>

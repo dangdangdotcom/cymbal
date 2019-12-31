@@ -1,0 +1,7 @@
+---
+- hosts: redisservers
+
+  tasks:
+  - name: create redis account
+    # password明文是redis
+    user: name=redis password=$6$rounds=656000$mysecretsalt$qtG53WXrDRjXZUiLnZtfsoUGTTwPSE3DyWOwlpbsUIRrTgzXTfaH4pDcuYyhdb32GhSbtcR7Y6cm6eg9ihVk81
