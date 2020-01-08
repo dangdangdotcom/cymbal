@@ -1,4 +1,5 @@
-# Cymbal - An operational platform for Redis.
+![Cymbal](https://raw.githubusercontent.com/dangdangdotcom/cymbal/master/doc/images/cymbal-logo.png)
+# An operational platform for Redis.
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
@@ -10,7 +11,7 @@ Cymbal基于Spring Boot2开发。
 
 # Screenshots
 
-![配置界面](https://github.com/dangdangdotcom/cymbal/blob/master/doc/images/cymbal-cluster-screenshot.png?raw=true)
+![配置界面](https://raw.githubusercontent.com/dangdangdotcom/cymbal/master/doc/images/cymbal-cluster-screenshot.png)
 
 # Features
 
