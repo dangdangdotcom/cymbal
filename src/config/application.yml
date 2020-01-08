@@ -1,0 +1,94 @@
+spring:
+  profiles: service-prod, job-prod, proxy-prod
+  datasource:
+    # database connection url
+    url: jdbc:mysql://127.0.0.1:3306/cymbal?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull
+    # database user
+    username: yourDbUserName
+    # database password
+    password: yourPassword
+    mail:
+      default-encoding: UTF-8
+      # your mail service host
+      host: cymbal.io
+      # your mail service port
+      port: 25
+      # account of mail sender
+      username: user@cymbal.io
+      # password of mail sender
+      password: password
+      protocol: smtp
+      properties:
+        mail:
+          smtp:
+            auth: true
+            ssl:
+              enable: false
+
+server:
+  tomcat:
+    uri-encoding: UTF-8
+  # cymbal portal port
+  port: 80
+
+job:
+  # cron of replication scan job
+  replicaion:
+    cron: 0 */60 * * * ?
+
+security:
+  cas:
+    # use cas for security or not
+    enable: false
+    # url of cas service
+    serverUrlPrefix: http://cas.cymbal.io/authentication
+    # login api url of cas service
+    serverLoginUrl: ${security.cas.serverUrlPrefix}/login
+    logout api url of cas service
+    serverLogoutUrl: ${security.cas.serverUrlPrefix}/logout
+    # host of cymbal portal service
+    serviceName: http://cymbal.io
+
+logging:
+  level:
+    # log level
+    root: info
+
+proxy:
+  grafana:
+    # enable proxy for grafana service
+    enable: true
+    # actual uri of grafana service
+    targetUri: http://grafana.cymbal.io/grafana
+    log: true
+  prometheus:
+    # enable proxy for prometheus service
+    enable: true
+    # actual uri of prometheus service
+    targetUri: http://prometheus.cymbal.io
+    log: true
+
+alarm:
+  mail:
+    # name of mail sender
+    from: user@cymbal.com
+    # mail addr of receiver
+    to: admin@cymbal.comi
+
+monitor:
+  # default or grafana
+  type: default
+  grafana:
+    api:
+      # uri of grafana service
+      url: http://grafana.cymbal.io/grafana
+      # key for grafana api
+      # it is generate by grafana
+      key: grafanaApiKey
+
+  prometheus:
+    # host of prometheus service, cymbal will ssh to that host to change some config
+    host: http://prometheus.cymbal.io/
+    confd:
+      # path in prometheus's node to put config file
+      path: #{prometheus_path}/conf.d/
