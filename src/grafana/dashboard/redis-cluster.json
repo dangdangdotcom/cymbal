@@ -1915,5 +1915,5 @@
   },
   "timezone": "browser",
   "title": "Redis Cluster",
-  "uid": "cymbal_redis_cluster",
+  "uid": "cymbal_redis_cluster"
 }
