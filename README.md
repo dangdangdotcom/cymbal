@@ -51,4 +51,4 @@ Cymbal基于Spring Boot2开发。
 * **Redis** ![redis](https://redis.io/images/redis-white.png)
 
 # License
-The project is licensed under the [Apache 2 license](https://github.com/ctripcorp/apollo/blob/master/LICENSE).
+The project is licensed under the [Apache 2 license](https://github.com/dangdangdotcom/cymbal/blob/master/LICENSE).
