@@ -220,6 +220,7 @@
                 <active_profile>dev</active_profile>
             </properties>
         </profile>
+
         <profile>
             <id>dangdang-prod</id>
             <properties>
