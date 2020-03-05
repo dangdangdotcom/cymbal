@@ -3,12 +3,13 @@
 
   vars:
     base_path: ../
+    dest_path: /home/redis/
 
   tasks:
   - name: copy redis_exporter file to remote server
     copy:
       src: "{{ base_path }}/software_package/redis_exporter.tar.gz"
-      dest: "{{ base_path }}"
+      dest: "{{ dest_path }}"
       owner: redis
       group: redis
       mode: "u=rw,g=r,o=r"
@@ -16,20 +17,20 @@
 
   - name: unarchive redis_exporter file
     unarchive:
-      src: "{{ base_path }}/redis_exporter.tar.gz"
-      dest: "{{ base_path }}"
+      src: "{{ dest_path }}/redis_exporter.tar.gz"
+      dest: "{{ dest_path }}"
       remote_src: yes
 
   - name: make conf.d dir
     file:
-      path: "{{ base_path }}/redis_exporter/conf.d"
+      path: "{{ dest_path }}/redis_exporter/conf.d"
       owner: redis
       group: redis
       state: directory
 
   - name: copy redis_exporter.service to /etc/systemd/system/
     copy:
-      src: "{{ base_path }}/redis_exporter/redis_exporter.service"
+      src: "{{ dest_path }}/redis_exporter/redis_exporter.service"
       dest: "/etc/systemd/system/"
       remote_src: yes
     when:
