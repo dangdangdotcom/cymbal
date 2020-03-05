@@ -1,9 +1,9 @@
 package com.dangdang.cymbal.service.auth.service.process.impl;
 
-import com.dangdang.cymbal.service.auth.service.entity.UserRoleEntityService;
 import com.dangdang.cymbal.domain.po.RoleDict;
 import com.dangdang.cymbal.domain.po.UserRole;
 import com.dangdang.cymbal.service.auth.service.entity.RoleDictEntityService;
+import com.dangdang.cymbal.service.auth.service.entity.UserRoleEntityService;
 import com.dangdang.cymbal.service.auth.service.process.UserRoleProcessService;
 import com.google.common.base.Preconditions;
 import org.springframework.stereotype.Service;

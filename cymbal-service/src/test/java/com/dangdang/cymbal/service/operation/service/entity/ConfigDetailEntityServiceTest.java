@@ -1,7 +1,7 @@
 package com.dangdang.cymbal.service.operation.service.entity;
 
-import com.dangdang.cymbal.domain.po.ConfigDetailStatus;
 import com.dangdang.cymbal.domain.po.ConfigDetail;
+import com.dangdang.cymbal.domain.po.ConfigDetailStatus;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;

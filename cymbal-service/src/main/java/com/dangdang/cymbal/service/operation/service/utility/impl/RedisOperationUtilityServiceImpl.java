@@ -1,11 +1,11 @@
 package com.dangdang.cymbal.service.operation.service.utility.impl;
 
-import com.dangdang.cymbal.service.cluster.service.entity.InstanceEntityService;
-import com.dangdang.cymbal.service.cluster.service.process.InstanceProcessService;
 import com.dangdang.cymbal.domain.bo.InstanceBO;
 import com.dangdang.cymbal.domain.po.Instance;
 import com.dangdang.cymbal.domain.po.InstanceStatus;
 import com.dangdang.cymbal.domain.po.RedisReplicationRole;
+import com.dangdang.cymbal.service.cluster.service.entity.InstanceEntityService;
+import com.dangdang.cymbal.service.cluster.service.process.InstanceProcessService;
 import com.dangdang.cymbal.service.operation.service.utility.RedisClientUtilityService;
 import com.dangdang.cymbal.service.operation.service.utility.RedisOperationUtilityService;
 import com.dangdang.cymbal.service.util.RedisUtil;

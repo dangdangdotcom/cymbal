@@ -8,7 +8,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
 
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**

@@ -1,12 +1,5 @@
 package com.dangdang.cymbal.service.operation.service.utility.impl;
 
-import com.dangdang.cymbal.service.cluster.service.process.InstanceProcessService;
-import com.dangdang.cymbal.service.constant.Constant;
-import com.dangdang.cymbal.service.operation.enums.RedisCommand;
-import com.dangdang.cymbal.service.operation.enums.RedisReplyFormat;
-import com.dangdang.cymbal.service.operation.service.utility.RedisShellUtilityService;
-import com.dangdang.cymbal.service.util.RedisUtil;
-import com.dangdang.cymbal.service.util.enums.ShellCommand;
 import com.dangdang.cymbal.common.util.CollectionUtil;
 import com.dangdang.cymbal.domain.bo.ClusterNodeBO;
 import com.dangdang.cymbal.domain.bo.InstanceBO;
@@ -14,7 +7,14 @@ import com.dangdang.cymbal.domain.po.Instance;
 import com.dangdang.cymbal.domain.po.InstanceType;
 import com.dangdang.cymbal.domain.po.Node;
 import com.dangdang.cymbal.domain.po.RedisReplicationRole;
+import com.dangdang.cymbal.service.cluster.service.process.InstanceProcessService;
+import com.dangdang.cymbal.service.constant.Constant;
+import com.dangdang.cymbal.service.operation.enums.RedisCommand;
+import com.dangdang.cymbal.service.operation.enums.RedisReplyFormat;
 import com.dangdang.cymbal.service.operation.service.utility.RedisClientUtilityService;
+import com.dangdang.cymbal.service.operation.service.utility.RedisShellUtilityService;
+import com.dangdang.cymbal.service.util.RedisUtil;
+import com.dangdang.cymbal.service.util.enums.ShellCommand;
 import com.google.common.base.Preconditions;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

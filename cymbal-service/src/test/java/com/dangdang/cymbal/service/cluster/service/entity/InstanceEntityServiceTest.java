@@ -1,8 +1,8 @@
 package com.dangdang.cymbal.service.cluster.service.entity;
 
 import com.dangdang.cymbal.domain.po.Instance;
-import com.dangdang.cymbal.domain.po.RedisReplicationRole;
 import com.dangdang.cymbal.domain.po.InstanceStatus;
+import com.dangdang.cymbal.domain.po.RedisReplicationRole;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;

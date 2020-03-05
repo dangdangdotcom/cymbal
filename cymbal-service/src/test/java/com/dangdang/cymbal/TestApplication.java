@@ -1,7 +1,6 @@
 package com.dangdang.cymbal;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * @Author: GeZhen

@@ -1,7 +1,7 @@
 package com.dangdang.cymbal.service.operation.service.utility;
 
-import com.dangdang.cymbal.service.util.enums.ShellCommand;
 import com.dangdang.cymbal.domain.bo.InstanceBO;
+import com.dangdang.cymbal.service.util.enums.ShellCommand;
 
 import java.util.List;
 

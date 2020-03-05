@@ -1,10 +1,5 @@
 package com.dangdang.cymbal.service.cluster.service.process;
 
-import com.dangdang.cymbal.service.cluster.service.entity.ClusterEntityService;
-import com.dangdang.cymbal.service.cluster.service.entity.InstanceEntityService;
-import com.dangdang.cymbal.service.node.service.entity.NodeEntityService;
-import com.dangdang.cymbal.service.util.service.AnsibleService;
-import com.dangdang.cymbal.service.util.service.SshClientService;
 import com.dangdang.cymbal.domain.bo.ClusterBO;
 import com.dangdang.cymbal.domain.bo.ClusterNodeBO;
 import com.dangdang.cymbal.domain.bo.InstanceBO;
@@ -18,8 +13,13 @@ import com.dangdang.cymbal.domain.po.Node;
 import com.dangdang.cymbal.domain.po.NodeStatus;
 import com.dangdang.cymbal.domain.po.RedisMode;
 import com.dangdang.cymbal.domain.po.RedisReplicationRole;
+import com.dangdang.cymbal.service.cluster.service.entity.ClusterEntityService;
+import com.dangdang.cymbal.service.cluster.service.entity.InstanceEntityService;
+import com.dangdang.cymbal.service.node.service.entity.NodeEntityService;
 import com.dangdang.cymbal.service.operation.service.utility.RedisClientUtilityService;
 import com.dangdang.cymbal.service.operation.service.utility.RedisShellUtilityService;
+import com.dangdang.cymbal.service.util.service.AnsibleService;
+import com.dangdang.cymbal.service.util.service.SshClientService;
 import com.google.common.base.Strings;
 import org.apache.commons.lang.RandomStringUtils;
 import org.junit.Test;

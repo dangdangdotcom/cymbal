@@ -1,8 +1,8 @@
 USE cymbal;
 
-INSERT INTO node (id, env, idc, ip, host, total_memory, free_memory, last_changed_date) VALUES(1, 'TEST', 'TEST', '10.255.242.148', 'test1', 4, 4, now());
-INSERT INTO node (id, env, idc, ip, host, total_memory, free_memory, last_changed_date) VALUES(2, 'TEST', 'TEST', '10.255.242.146', 'test2', 4, 4, now());
-INSERT INTO node (id, env, idc, ip, host, total_memory, free_memory, last_changed_date) VALUES(3, 'TEST', 'TEST', '10.255.209.233', 'test3', 4, 4, now());
+INSERT INTO node (id, env, idc, ip, host, total_memory, free_memory, last_changed_date) VALUES(1, 'TEST', 'TEST', '192.168.1.1', 'test1', 4, 4, now());
+INSERT INTO node (id, env, idc, ip, host, total_memory, free_memory, last_changed_date) VALUES(2, 'TEST', 'TEST', '192.168.1.2', 'test2', 4, 4, now());
+INSERT INTO node (id, env, idc, ip, host, total_memory, free_memory, last_changed_date) VALUES(3, 'TEST', 'TEST', '192.168.1.3', 'test3', 4, 4, now());
 
 INSERT INTO `user_role` (`user_en_name`, role_id, creation_date, last_changed_date) VALUES('cymbal', 1, now(), now());
 

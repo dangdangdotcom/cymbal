@@ -1,4 +1,3 @@
-DROP SCHEMA IF EXISTS cymbal;
 CREATE SCHEMA cymbal;
 USE cymbal;
 

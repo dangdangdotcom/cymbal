@@ -1,16 +1,16 @@
 package com.dangdang.cymbal.service.operation.service.utility.impl;
 
-import com.dangdang.cymbal.service.cluster.service.entity.InstanceEntityService;
-import com.dangdang.cymbal.service.cluster.service.process.InstanceProcessService;
-import com.dangdang.cymbal.service.operation.service.utility.RedisReplicationUtilityService;
-import com.dangdang.cymbal.service.util.exception.ShellExecutionException;
 import com.dangdang.cymbal.domain.bo.InstanceBO;
 import com.dangdang.cymbal.domain.po.Instance;
 import com.dangdang.cymbal.domain.po.InstanceStatus;
 import com.dangdang.cymbal.domain.po.InstanceType;
 import com.dangdang.cymbal.domain.po.RedisReplicationRole;
+import com.dangdang.cymbal.service.cluster.service.entity.InstanceEntityService;
+import com.dangdang.cymbal.service.cluster.service.process.InstanceProcessService;
+import com.dangdang.cymbal.service.operation.service.utility.RedisReplicationUtilityService;
 import com.dangdang.cymbal.service.operation.service.utility.RedisShellUtilityService;
 import com.dangdang.cymbal.service.util.enums.ShellCommand;
+import com.dangdang.cymbal.service.util.exception.ShellExecutionException;
 import com.google.common.base.Preconditions;
 import org.springframework.stereotype.Service;
 

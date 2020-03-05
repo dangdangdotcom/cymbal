@@ -1,9 +1,9 @@
 package com.dangdang.cymbal.service.monitor.service;
 
-import com.dangdang.cymbal.service.monitor.bean.RedisMonitorInfo;
 import com.dangdang.cymbal.domain.bo.ClusterBO;
 import com.dangdang.cymbal.domain.bo.InstanceBO;
 import com.dangdang.cymbal.domain.po.Node;
+import com.dangdang.cymbal.service.monitor.bean.RedisMonitorInfo;
 
 import java.util.List;
 

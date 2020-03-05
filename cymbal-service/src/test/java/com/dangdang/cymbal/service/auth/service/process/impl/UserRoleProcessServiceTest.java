@@ -1,8 +1,8 @@
 package com.dangdang.cymbal.service.auth.service.process.impl;
 
+import com.dangdang.cymbal.domain.po.UserRole;
 import com.dangdang.cymbal.service.auth.service.entity.UserRoleEntityService;
 import com.dangdang.cymbal.service.auth.service.process.UserRoleProcessService;
-import com.dangdang.cymbal.domain.po.UserRole;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;

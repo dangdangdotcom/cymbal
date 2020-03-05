@@ -1,8 +1,8 @@
 package com.dangdang.cymbal.service.auth.service.process.impl;
 
+import com.dangdang.cymbal.domain.po.ClusterPermission;
 import com.dangdang.cymbal.service.auth.service.entity.ClusterPermissionEntityService;
 import com.dangdang.cymbal.service.auth.service.process.ClusterPermissionProcessService;
-import com.dangdang.cymbal.domain.po.ClusterPermission;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

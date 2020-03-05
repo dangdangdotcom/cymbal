@@ -1,9 +1,9 @@
 package com.dangdang.cymbal.service.cluster.service.entity;
 
-import com.dangdang.cymbal.domain.po.Environment;
-import com.dangdang.cymbal.domain.po.InternetDataCenter;
 import com.dangdang.cymbal.domain.po.Cluster;
 import com.dangdang.cymbal.domain.po.ClusterStatus;
+import com.dangdang.cymbal.domain.po.Environment;
+import com.dangdang.cymbal.domain.po.InternetDataCenter;
 import com.dangdang.cymbal.domain.po.RedisMode;
 import org.junit.Test;
 import org.junit.runner.RunWith;

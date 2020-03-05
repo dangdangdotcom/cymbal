@@ -1,8 +1,8 @@
 package com.dangdang.cymbal.service.util.service.impl;
 
+import com.dangdang.cymbal.common.util.StreamUtil;
 import com.dangdang.cymbal.service.constant.Constant;
 import com.dangdang.cymbal.service.util.exception.ShellExecutionException;
-import com.dangdang.cymbal.common.util.StreamUtil;
 import com.dangdang.cymbal.service.util.service.SshClientService;
 import com.google.common.base.Objects;
 import com.google.common.cache.CacheBuilder;

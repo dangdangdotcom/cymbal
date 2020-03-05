@@ -1,8 +1,10 @@
 USE cymbal;
 
-INSERT INTO `user_role` (`id`, `user_en_name`, `role_id`, creation_date, last_changed_date) VALUES(1, 'gezhen', 1, NOW(), NOW());
+INSERT INTO `user` (`id`, `user_name`, `user_cn_name`, `email`, `password`, `creation_date`, `last_changed_date`) VALUES(1, 'cymbal', 'cymbal管理员', 'admin@cymbal.io', '123456', NOW(), NOW());
 
-INSERT INTO `role_dict` (`id`, `role_name`, creation_date, last_changed_date) VALUES(1, 'system_administrator', NOW(), NOW());
+INSERT INTO `user_role` (`id`, `user_en_name`, `role_id`, `creation_date`, `last_changed_date`) VALUES(1, 'cymbal', 1, NOW(), NOW());
+
+INSERT INTO `role_dict` (`id`, `role_name`, `creation_date`, `last_changed_date`) VALUES(1, 'system_administrator', NOW(), NOW());
 
 insert into `config_dict` (`redis_mode`, `redis_version`, `item_name`, `default_item_value`, `item_comment`) values('standalone','redis-2.8.24','appendonly','yes','yes, no');
 insert into `config_dict` (`redis_mode`, `redis_version`, `item_name`, `default_item_value`, `item_comment`) values('standalone','redis-2.8.24','appendfsync','no','everysec, always, no');

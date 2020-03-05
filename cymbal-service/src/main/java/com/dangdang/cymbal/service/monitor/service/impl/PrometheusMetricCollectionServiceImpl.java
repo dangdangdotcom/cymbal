@@ -20,7 +20,6 @@ import javax.annotation.Resource;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -66,14 +65,6 @@ public class PrometheusMetricCollectionServiceImpl implements MetricCollectionSe
         addNodes(Arrays.asList(node));
     }
 
-    @Override
-    public void addNodes(final List<Node> nodes) {
-        Preconditions.checkArgument(!nodes.isEmpty(), "Nodes can not be null or empty.");
-        removeDuplicate(nodes);
-        installExporterForNodes(nodes);
-        registerExporterToPrometheus(nodes);
-    }
-
     private void removeDuplicate(final List<Node> nodes) {
         if (nodes.size() == 1) {
             return;
@@ -81,6 +72,14 @@ public class PrometheusMetricCollectionServiceImpl implements MetricCollectionSe
         Set<Node> nodesWithoutDuplicate = new HashSet<>(nodes);
         nodes.clear();
         nodes.addAll(nodesWithoutDuplicate);
+    }
+
+    @Override
+    public void addNodes(final List<Node> nodes) {
+        Preconditions.checkArgument(!nodes.isEmpty(), "Nodes can not be null or empty.");
+        removeDuplicate(nodes);
+        installExporterForNodes(nodes);
+        registerExporterToPrometheus(nodes);
     }
 
     private void installExporterForNodes(final List<Node> nodes) {

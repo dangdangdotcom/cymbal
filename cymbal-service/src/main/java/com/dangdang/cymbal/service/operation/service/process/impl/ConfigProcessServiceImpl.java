@@ -1,14 +1,14 @@
 package com.dangdang.cymbal.service.operation.service.process.impl;
 
-import com.dangdang.cymbal.service.auth.service.process.UserRoleProcessService;
-import com.dangdang.cymbal.service.constant.Constant;
-import com.dangdang.cymbal.service.operation.service.entity.ConfigEntityService;
 import com.dangdang.cymbal.common.util.CollectionUtil;
 import com.dangdang.cymbal.domain.bo.ClusterBO;
 import com.dangdang.cymbal.domain.bo.InstanceBO;
 import com.dangdang.cymbal.domain.po.Cluster;
 import com.dangdang.cymbal.domain.po.Config;
 import com.dangdang.cymbal.domain.po.RedisPersistenceType;
+import com.dangdang.cymbal.service.auth.service.process.UserRoleProcessService;
+import com.dangdang.cymbal.service.constant.Constant;
+import com.dangdang.cymbal.service.operation.service.entity.ConfigEntityService;
 import com.dangdang.cymbal.service.operation.service.process.ConfigDetailProcessService;
 import com.dangdang.cymbal.service.operation.service.process.ConfigProcessService;
 import com.google.common.base.Preconditions;
