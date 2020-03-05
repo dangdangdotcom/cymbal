@@ -1,13 +1,12 @@
 package com.dangdang.cymbal.service.node.service.process;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.dangdang.cymbal.domain.po.Node;
+import com.dangdang.cymbal.domain.po.NodeStatus;
 import com.dangdang.cymbal.service.node.service.entity.NodeEntityService;
-import com.dangdang.cymbal.service.node.service.process.NodeProcessService;
 import com.dangdang.cymbal.service.util.enums.AnsiblePlayBookName;
 import com.dangdang.cymbal.service.util.service.AnsibleService;
 import com.dangdang.cymbal.service.util.service.impl.ShellService;
-import com.dangdang.cymbal.domain.po.Node;
-import com.dangdang.cymbal.domain.po.NodeStatus;
 import com.google.common.collect.Lists;
 import org.junit.Before;
 import org.junit.Test;
@@ -53,9 +52,9 @@ public class NodeProcessServiceTest {
                         "changed: [192.168.91.182] => (item=redis-3.2.11)\n",
                         "changed: [192.168.91.200] => (item=redis-3.2.11)\n",
                         "PLAY RECAP *********************************************************************\n",
-                        "10.255.242.148             : ok=7    changed=2    unreachable=0    failed=0\n",
-                        "10.255.242.146             : ok=7    changed=2    unreachable=0    failed=0\n",
-                        "10.255.209.233             : ok=6    changed=2    unreachable=0    failed=1\n");
+                        "192.168.1.1             : ok=7    changed=2    unreachable=0    failed=0\n",
+                        "192.168.1.2             : ok=7    changed=2    unreachable=0    failed=0\n",
+                        "192.168.1.3             : ok=6    changed=2    unreachable=0    failed=1\n");
         Mockito.doReturn(ansibleResult).when(shellService)
                 .execAnsibleShellScript(Mockito.any(AnsiblePlayBookName.class), Mockito.anyString());
         ReflectionTestUtils.setField(ansibleService, "shellService", shellService);
