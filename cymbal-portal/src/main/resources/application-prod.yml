@@ -2,12 +2,12 @@ spring:
   profiles:
     include: service-prod, job-prod, proxy-prod
   freemarker:
-    cache: false
+    cache: true
     settings:
       template_update_delay: 0
   devtools:
     restart:
-      enabled: true
+      enabled: false
 
 security:
   cas:
