@@ -175,13 +175,11 @@ function updateRedisConfig(obj) {
     var l = Ladda.create(obj);
     l.start();
     $.ajax({
-        type: "POST",
-        url: "redis/config/updateRedisConfig",
-        data: JSON.stringify($('#config-id').val()),
-        dataType: "json",
+        type: "PATCH",
+        url: "/configs/" + $('#config-id').val() + "/details",
         contentType: "application/json",
         success: function (response) {
-            alert(response == true ? '更新成功' : '更新失败');
+            alert('更新成功');
             l.stop();
         },
         error: function (errors) {

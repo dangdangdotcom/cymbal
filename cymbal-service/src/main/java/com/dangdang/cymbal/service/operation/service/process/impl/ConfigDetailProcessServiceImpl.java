@@ -215,14 +215,12 @@ public class ConfigDetailProcessServiceImpl implements ConfigDetailProcessServic
         // TODO 优化
         if (Objects.isNull(configDetail.getId())) {
             configDetail.setStatus(ConfigDetailStatus.NOT_EFFECTIVE);
-            configDetail.setCreationDate(new Date());
-            configDetail.setLastChangedDate(configDetail.getCreationDate());
             redisConfigDetailEntityService.save(configDetail);
         } else {
             ConfigDetail oldConfigDetail = redisConfigDetailEntityService.getById(configDetail.getId());
             oldConfigDetail.setStatus(ConfigDetailStatus.NOT_EFFECTIVE);
-            oldConfigDetail.setItemName(configDetail.getItemName());
-            redisConfigDetailEntityService.saveOrUpdate(configDetail);
+            oldConfigDetail.setItemValue(configDetail.getItemValue());
+            redisConfigDetailEntityService.saveOrUpdate(oldConfigDetail);
         }
         return configDetail.getId();
     }
