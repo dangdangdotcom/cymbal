@@ -4,7 +4,7 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/cymbal?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull
     username: yourDbUserName
     password: yourPassword
-    continue-on-error: true
+    continue-on-error: false
     type: com.alibaba.druid.pool.DruidDataSource
     initial-size: 10
     max-active: 60
@@ -21,8 +21,6 @@ spring:
     pool-prepared-statements: true
     max-open-prepared-statements: 20
     filters: stat,wall,slf4j
-    schema: classpath:datasource/schema.sql
-    data: classpath:datasource/data.sql
   mail:
     default-encoding: UTF-8
     host: cymbal.io
@@ -40,7 +38,7 @@ spring:
 mybatis-plus:
   type-enums-package: com.dangdang.cymbal.domain.po
   configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    log-impl: org.apache.ibatis.logging.nologging.NoLoggingImpl
     default-enum-type-handler: org.apache.ibatis.type.EnumOrdinalTypeHandler
   global-config:
     banner: false

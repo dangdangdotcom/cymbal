@@ -12,15 +12,6 @@ public class Constant {
         public static final int EXIT_VALUE_OK = 0;
     }
 
-    public class Redis {
-
-        public static final String EXECUTE_RESULT_SUCCESS = "OK";
-
-        public static final String EXECUTE_RESULT_NOKEY = "NOKEY";
-
-        public static final int CLUSTER_ID_LENGTH = 8;
-    }
-
     public class Strings {
 
         public static final String EMPTY_PASSWORD = "''";
@@ -28,6 +19,15 @@ public class Constant {
         public static final String EMPTY = "";
 
         public static final String BLANK_SPACE = " ";
+    }
+
+    public class Redis {
+
+        public static final String EXECUTE_RESULT_SUCCESS = "OK";
+
+        public static final String EXECUTE_RESULT_NOKEY = "NOKEY";
+
+        public static final int CLUSTER_ID_LENGTH = 8;
     }
 
     public class RedisConfig {
@@ -58,5 +58,12 @@ public class Constant {
         public static final String CONNECTED_CLIENTS = "connected_clients";
 
         public static final String INSTANTANEOUS_OUTPUT_KBPS = "instantaneous_output_kbps";
+    }
+
+    public class RedisReplication {
+
+        public static final String MASTER_MASTER_IP = "NO";
+
+        public static final String MASTER_MASTER_PORT = "ONE";
     }
 }

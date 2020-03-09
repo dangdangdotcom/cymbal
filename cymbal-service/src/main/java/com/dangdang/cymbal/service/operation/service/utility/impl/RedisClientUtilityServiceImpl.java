@@ -55,13 +55,13 @@ public class RedisClientUtilityServiceImpl implements RedisClientUtilityService 
     }
 
     @Override
-    public void slaveOf(final InstanceBO instanceBO, final String newMasterHost, final Integer newMasterPort,
+    public void slaveOf(final InstanceBO instanceBO, final String newMasterHost, final String newMasterPort,
             final String newMasterPassword) {
         Instance instance = instanceBO.getSelf();
         Node node = instanceBO.getNode();
         List<String> result = redisShellUtilityService
                 .executeRedisShellScript(instanceBO, ShellCommand.SLAVEOF, instance.getClusterId(), node.getIp(),
-                        instance.getPort().toString(), newMasterHost, newMasterPort.toString(),
+                        instance.getPort().toString(), newMasterHost, newMasterPort,
                         RedisUtil.getRedisPassword(newMasterPassword));
         checkShellExecuteResult(result);
     }
@@ -143,7 +143,15 @@ public class RedisClientUtilityServiceImpl implements RedisClientUtilityService 
 
     @Override
     public void shutdown(final InstanceBO instanceBO) {
-        executeRedisCommand(instanceBO, RedisCommand.SHUTDOWN.getValue(), RedisReplyFormat.RAW);
+        if (InstanceType.SENTINEL.equals(instanceBO.getSelf().getType())) {
+            redisShellUtilityService
+                    .executeSentinelShellScript(instanceBO, ShellCommand.STOP, instanceBO.getNode().getIp(),
+                            instanceBO.getSelf().getPort().toString());
+        } else {
+            redisShellUtilityService
+                    .executeRedisShellScript(instanceBO, ShellCommand.STOP, instanceBO.getNode().getIp(),
+                            instanceBO.getSelf().getPort().toString());
+        }
     }
 
     @Override

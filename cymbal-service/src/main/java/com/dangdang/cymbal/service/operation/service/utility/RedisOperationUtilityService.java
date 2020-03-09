@@ -69,6 +69,20 @@ public interface RedisOperationUtilityService {
     void slaveOf(InstanceBO instanceBO, String newMasterHost, Integer newMasterPort, String newMasterPassword);
 
     /**
+     * Delete replication of slave, and turn it into a master.
+     *
+     * @param instanceId redis server instance id
+     */
+    void slaveOfNoOne(Integer instanceId);
+
+    /**
+     * Delete replication of slave, and turn it into a master.
+     *
+     * @param instanceBO redis server instance BO
+     */
+    void slaveOfNoOne(InstanceBO instanceBO);
+
+    /**
      * Do failover to a slave instance of cluster and update instance entities, both master and slave.
      *
      * @param instanceId redis server instance id

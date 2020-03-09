@@ -11,6 +11,8 @@ public enum ShellCommand {
 
     START,
 
+    STOP,
+
     CREATE_CLUSTER,
 
     SLAVEOF,

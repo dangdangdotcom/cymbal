@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -58,6 +59,12 @@ public class OperationController extends BaseController {
     public void slaveOf(@PathVariable Integer instanceId, @RequestBody InstanceDTO masterInstance) {
         redisOperationUtilityService
                 .slaveOf(instanceId, masterInstance.getIp(), masterInstance.getPort(), masterInstance.getPassword());
+    }
+
+    @DeleteMapping(value = "/replication/instances/{instanceId}")
+    @ResponseBody
+    public void slaveOfNoOne(@PathVariable Integer instanceId, @RequestBody InstanceDTO masterInstance) {
+        redisOperationUtilityService.slaveOfNoOne(instanceId);
     }
 
     @PatchMapping(value = "/forget/instances/{instanceId}")

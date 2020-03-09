@@ -166,7 +166,6 @@ apply_systemd_service_for_centos_7() {
         ssh root@$ip "sed -i -e 's/\${redis_port}/$port/g'\
             -e 's/\${redis_version}/$redis_version/g'\
             -e 's/\${redis_password}/$password/g'\
-            -e 's/\${taskset_cpus}/$taskset_cpus/g'\
             /etc/systemd/system/redis-$port.service\
             && systemctl daemon-reload\
             && systemctl enable redis-$port >/dev/null 2>&1"

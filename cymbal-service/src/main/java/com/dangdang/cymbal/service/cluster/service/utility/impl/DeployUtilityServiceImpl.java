@@ -109,7 +109,8 @@ public class DeployUtilityServiceImpl implements DeploymentUtilityService {
             if (InstanceType.REDIS.equals(each.getSelf().getType())) {
                 if (each.getMaster() != null) {
                     redisClientUtilityService
-                            .slaveOf(each, each.getMaster().getNode().getIp(), each.getMaster().getSelf().getPort(),
+                            .slaveOf(each, each.getMaster().getNode().getIp(),
+                                    each.getMaster().getSelf().getPort().toString(),
                                     redisClusterBO.getCluster().getPassword());
                 }
             }

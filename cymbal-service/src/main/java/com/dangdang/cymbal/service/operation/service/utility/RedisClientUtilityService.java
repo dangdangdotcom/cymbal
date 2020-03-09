@@ -29,7 +29,7 @@ public interface RedisClientUtilityService {
      * @param newMasterPort new master port
      * @param newMasterPassword new master password
      */
-    void slaveOf(InstanceBO instanceBO, String newMasterHost, Integer newMasterPort, String newMasterPassword);
+    void slaveOf(InstanceBO instanceBO, String newMasterHost, String newMasterPort, String newMasterPassword);
 
 
     /**

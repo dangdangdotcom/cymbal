@@ -1,6 +1,7 @@
 package com.dangdang.cymbal.domain.po;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.FieldStrategy;
 import com.baomidou.mybatisplus.annotation.TableField;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -35,6 +36,7 @@ public class Instance implements Serializable {
 
     private RedisReplicationRole role;
 
+    @TableField(updateStrategy = FieldStrategy.IGNORED)
     private String slaveof;
 
     private String clusterNodeId;

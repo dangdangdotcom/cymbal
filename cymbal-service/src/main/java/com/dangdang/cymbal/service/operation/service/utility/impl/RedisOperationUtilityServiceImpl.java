@@ -6,6 +6,7 @@ import com.dangdang.cymbal.domain.po.InstanceStatus;
 import com.dangdang.cymbal.domain.po.RedisReplicationRole;
 import com.dangdang.cymbal.service.cluster.service.entity.InstanceEntityService;
 import com.dangdang.cymbal.service.cluster.service.process.InstanceProcessService;
+import com.dangdang.cymbal.service.constant.Constant;
 import com.dangdang.cymbal.service.operation.service.utility.RedisClientUtilityService;
 import com.dangdang.cymbal.service.operation.service.utility.RedisOperationUtilityService;
 import com.dangdang.cymbal.service.util.RedisUtil;
@@ -93,9 +94,24 @@ public class RedisOperationUtilityServiceImpl implements RedisOperationUtilitySe
     @Transactional
     public void slaveOf(final InstanceBO instanceBO, final String newMasterHost, final Integer newMasterPort,
             final String newMasterPassword) {
-        redisClientUtilityService.slaveOf(instanceBO, newMasterHost, newMasterPort, newMasterPassword);
+        redisClientUtilityService.slaveOf(instanceBO, newMasterHost, newMasterPort.toString(), newMasterPassword);
         this.updateInstanceRoleAndSlaveOf(instanceBO.getSelf(), RedisReplicationRole.SLAVE,
                 RedisUtil.getSlaveOf(newMasterHost, newMasterPort));
+    }
+
+    @Override
+    @Transactional
+    public void slaveOfNoOne(final Integer instanceId) {
+        InstanceBO instanceBO = instanceProcessService.getInstanceBOById(instanceId);
+        this.slaveOfNoOne(instanceBO);
+    }
+
+    @Override
+    @Transactional
+    public void slaveOfNoOne(InstanceBO instanceBO) {
+            redisClientUtilityService.slaveOf(instanceBO, Constant.RedisReplication.MASTER_MASTER_IP,
+                    Constant.RedisReplication.MASTER_MASTER_PORT, Constant.Strings.EMPTY_PASSWORD);
+            this.updateInstanceRoleAndSlaveOf(instanceBO.getSelf(), RedisReplicationRole.MASTER, null);
     }
 
     @Override

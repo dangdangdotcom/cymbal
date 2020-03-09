@@ -322,9 +322,9 @@ function openSlaveOfModal() {
         }
     }
 
-    $('#slaveOf_serverInstanceId').val(row.serverInstanceId);
+    $('#slaveOf_serverInstanceId').val(row.id);
     $('#slaveOf_clusterId').val(row.clusterId);
-    $('#slaveInfo').val(row['serverInfo.ip'] + ":" + row.port);
+    $('#slaveInfo').val(row.ip + ":" + row.port);
     $('#slaveOfModal').modal('show');
 }
 
@@ -355,18 +355,16 @@ function configSlaveOf() {
         return;
     }
 
-    var slaveOfInfo = {
-        "clusterId": $("#slaveOf_clusterId").val(),
-        "slaveInstanceId": $("#slaveOf_serverInstanceId").val()
-    };
+    var slaveOfInfo = {};
+    var type;
+
     if (type == 'OTHER_INST') {
-        slaveOfInfo.masterHost = $("#masterHost").val();
-        slaveOfInfo.masterPort = $("#masterPort").val();
-        slaveOfInfo.masterPassword = $("#masterPassword").val();
+        slaveOfInfo.ip = $("#masterHost").val();
+        slaveOfInfo.port = $("#masterPort").val();
+        slaveOfInfo.password = $("#masterPassword").val();
+        type = "PATCH";
     } else {
-        slaveOfInfo.masterHost = "NO";
-        slaveOfInfo.masterPort = "ONE";
-        slaveOfInfo.masterPassword = '';
+        type = "DELETE";
     }
 
     // blockUI first
@@ -375,14 +373,13 @@ function configSlaveOf() {
     var table = $('#redisServerTable');
     table.bootstrapTable('showLoading');
     $.ajax({
-        type: "POST",
-        url: "redis/slaveOf",
-        dataType: "json",
+        type: type,
+        url: "/replication/instances/" + $("#slaveOf_serverInstanceId").val(),
         data: JSON.stringify(slaveOfInfo),
-        contentType: "application/json",
+        contentType: 'application/json',
         success: function (response) {
             alert("配置主从关系成功！");
-            table.bootstrapTable('refresh', responseHandler(response));
+            table.bootstrapTable('refresh');
         },
         error: function (e) {
             alert("配置主从关系失败！");
