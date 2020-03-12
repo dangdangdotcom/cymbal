@@ -196,8 +196,9 @@ public class SecurityConfiguration {
             http.headers().frameOptions().disable();
             http.csrf().disable();
 
-            http.authorizeRequests().requestMatchers(CorsUtils::isPreFlightRequest).permitAll().anyRequest()
-                    .authenticated();
+            http.authorizeRequests().requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
+                    .antMatchers("/api/**").permitAll()
+                    .anyRequest().authenticated();
 
             http.logout().permitAll();
 
@@ -247,7 +248,7 @@ public class SecurityConfiguration {
                 http.headers().frameOptions().disable();
                 http.csrf().disable();
 
-                http.authorizeRequests().antMatchers("/login", "/logout").permitAll()
+                http.authorizeRequests().antMatchers("/login", "/logout", "/api/**").permitAll()
                         .antMatchers("/**").authenticated()
                         .and()
                         .formLogin().loginPage("/login").defaultSuccessUrl("/")

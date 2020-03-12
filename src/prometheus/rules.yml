@@ -1,5 +1,5 @@
 groups:
-- name: 'sloglog'
+- name: 'slowlog'
   rules:
   - alert: 'slowlog'
     expr: delta(redis_slowlog_last_id [5m]) >= 5
