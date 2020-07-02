@@ -77,7 +77,7 @@
         <sshj.version>0.27.0</sshj.version>
         <commons-httpclient.version>3.1</commons-httpclient.version>
         <poi.version>3.13</poi.version>
-        <mysql.version>5.1.32</mysql.version>
+        <mysql.version>8.0.16</mysql.version>
         <smiley-http-proxy-servlet.version>1.11</smiley-http-proxy-servlet.version>
 
         <lifecycle-mapping.version>1.0.0</lifecycle-mapping.version>
