@@ -70,7 +70,7 @@
 
         <mybatis.plus.version>3.1.2</mybatis.plus.version>
         <druid.version>1.1.10</druid.version>
-        <guava.version>28.1-jre</guava.version>
+        <guava.version>29.0-jre</guava.version>
         <commons-lang.version>2.6</commons-lang.version>
         <javaee-web-api.version>8.0</javaee-web-api.version>
         <fastjson.version>1.2.51</fastjson.version>
