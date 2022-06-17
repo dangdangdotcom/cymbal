@@ -73,7 +73,7 @@
         <guava.version>28.1-jre</guava.version>
         <commons-lang.version>2.6</commons-lang.version>
         <javaee-web-api.version>8.0</javaee-web-api.version>
-        <fastjson.version>1.2.51</fastjson.version>
+        <fastjson.version>1.2.83</fastjson.version>
         <sshj.version>0.27.0</sshj.version>
         <commons-httpclient.version>3.1</commons-httpclient.version>
         <poi.version>3.13</poi.version>
